@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "babel": "babel src -d dist ",
+    "start": "node ./dist/app.js",
+    "build": "babel src -d dist ",
     "dev": "nodemon --exec babel-node ./src/app.js",
-    "start-server": "node app.js"
+    "start-server": "node ./dist/app.js"
   },
   "author": "Thomas Aquinas",
   "license": "ISC",
