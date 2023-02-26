@@ -21,7 +21,7 @@ db.sequelize.sync()
     });
 
 app.use(cors({
-    origin: 'http://localhost:8000'
+    origin: process.env.FRONTENDORIGIN
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ extended: false }));
