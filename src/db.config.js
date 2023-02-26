@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "localhost",
+    HOST: process.env.PGHOST,
     USER: process.env.PGUSER,
     PASSWORD: process.env.PGPASSWORD,
     DB: process.env.PGDATABASE,
