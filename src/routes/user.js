@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/boards', userController.getUserBoards)
 router.get('/board/:boardId/cards', userController.getUserCardsInBoard)
 router.get('/card/:cardId', userController.getCardInfo)
+router.get('/img', userController.getImageByUrl)
 
 
 module.exports = router

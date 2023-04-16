@@ -6,6 +6,11 @@ const Board = db.boards
 const Permission = db.permission
 const PermissionUserCard = db.permissionUserCard
 const Sequelize = require('sequelize')
+const axios = require('axios');
+
+const encodeBase64 = (data) => {
+    return Buffer.from(data).toString('base64');
+}
 
 exports.getUserBoards = async (req, res, next) => {
     if(!req.user.userId){
@@ -25,6 +30,23 @@ exports.getUserBoards = async (req, res, next) => {
     })
     return res.status(200).json(userBoards)
 
+}
+
+exports.getImageByUrl = async (req, res, next) => {
+    console.log('gere')
+    const imgUrl = req.query.img_url
+    const resp = await axios.get(imgUrl, {
+        headers:{
+            Cookie: "token="+ process.env.TRELLOUSERTOKEN
+        },
+        responseType: 'arraybuffer'
+    })
+    console.log(Object.keys(resp))
+    const imageDataBuffer = Buffer.from(resp.data, 'binary');
+    const base64Image = imageDataBuffer.toString('base64');
+    const dataUrl = `data:image/png;base64,${base64Image}`;
+    res.contentType('image/png');
+    res.send(dataUrl);
 }
 
 exports.getCardInfo = async (req, res, next) => {
